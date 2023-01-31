@@ -2,33 +2,31 @@ import React, {useEffect, useState} from 'react';
 
 function Home (){
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`https://yummly2.p.rapidapi.com/feeds/list?limit=25&start=0`, {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
-                'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
-            }
-        })
-            .then((response) => response.json())
-            .then((actualData) => {
-                setData(actualData);
-                setError(null);
+        if (loading === false){
+            fetch(`https://yummly2.p.rapidapi.com/feeds/list?limit=25&start=0`, {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+                }
             })
-            .catch((err) => {
-                setError(err.message);
-                setData(null);
-            })
+                .then((response) => response.json())
+                .then((actualData) => {
+                    setData(actualData);
+                    setError(null);
+                    setLoading(true)
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setData(null);
+                })
+        }
 
     }, []);
-
-    console.log(data)
-// let data2 = data.feed[0].content.ingredientLines
-    let data3 = data.feed
-    console.log(data3)
 
     return (
         <div className="App">
@@ -46,12 +44,19 @@ function Home (){
             {/*        <li>{element.wholeLine}</li>*/}
             {/*    ))}*/}
             {/*</ul>*/}
-            <ul>
-                {data3.filter(l => l.type.includes('single recipe')).map((el, i) => (
-                    <li key={i}>{el.display.displayName}</li>
-                ))}
-            </ul>
-
+            {!loading &&
+                <div>
+                    <h3>Chargement...</h3>
+                </div>
+            }
+            {loading &&
+                <ul>
+                    {data &&
+                        data.feed.filter(l => l.type.includes('single recipe')).map((el, i) => (
+                        <li key={i}>{el.display.displayName}</li>
+                    ))}
+                </ul>
+            }
         </div>
     );
 }
