@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css';
+import SearchBar from './Searchbar';
 
 const Home = ({ recipes }) => {
     return (
@@ -7,6 +8,7 @@ const Home = ({ recipes }) => {
             <h1>Welcome to Barbapapa !</h1>
             <p>Find a recipe to your taste</p>
 
+            <SearchBar recipes={recipes} />
 
             <h2>You may like these recipes :</h2>
 
