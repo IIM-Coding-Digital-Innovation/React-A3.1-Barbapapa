@@ -6,8 +6,7 @@ function Recipe (){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     let { recipeId } = useParams();
-    console.log(useParams())
-    console.log('test')
+
     useEffect(() => {
 
         if (loading === false){
@@ -54,6 +53,19 @@ function Recipe (){
                     <h3>Chargement...</h3>
                 </div>
             }
+            {loading &&
+                <ul>
+                    {data &&
+                        data.sections.map((el, i) => (
+                            el.components.map((l, j) => (
+                                <li key={j}>
+                                    {l.raw_text}
+                                </li>
+                            ))
+                        ))}
+                </ul>
+            }
+
             {loading &&
                 <ul>
                     {data &&

@@ -57,7 +57,7 @@ function Home (){
             {loading &&
                 <ul>
                     {data &&
-                        data.results.map((el, i) => (
+                        data.results.filter(list => list.canonical_id.includes('recipe:')).map((el, i) => (
                         <li key={i}>
                             <Link to={`/recipe/${el.id}`}>{el.name}</Link>
                         </li>
