@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useParams} from "react-router-dom";
-import About from "./About";
-import Contact from "./Contact";
-import Recipe from "./Recipe"
 
-function Home (){
+function Recipe (){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-
+    let { recipeId } = useParams();
+    console.log(useParams())
+    console.log('test')
     useEffect(() => {
+
         if (loading === false){
-            fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
+            fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
                 method: 'GET',
                 headers: {
                     'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
@@ -21,6 +20,7 @@ function Home (){
             })
                 .then((response) => response.json())
                 .then((actualData) => {
+                    console.log(actualData)
                     setData(actualData);
                     setError(null);
                     setLoading(true)
@@ -35,7 +35,7 @@ function Home (){
 
     return (
         <div className="App">
-            <h1>API Posts</h1>
+            <h1>API Recipe</h1>
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
@@ -57,15 +57,18 @@ function Home (){
             {loading &&
                 <ul>
                     {data &&
-                        data.results.map((el, i) => (
-                        <li key={i}>
-                            <Link to={`/recipe/${el.id}`}>{el.name}</Link>
-                        </li>
-                    ))}
+                        data.instructions.map((el, i) => (
+                            <li key={i}>
+                                {el.display_text}
+                            </li>
+                        ))}
                 </ul>
             }
+            <Routes>
+                <Route exact path='/recipe' element={< Recipe />}></Route>
+            </Routes>
         </div>
     );
 }
 
-export default Home;
+export default Recipe;

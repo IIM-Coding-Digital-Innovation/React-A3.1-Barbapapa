@@ -1,9 +1,8 @@
 import React from 'react';
 
 function Contact (){
-    return <address>
-        47 bd de Pesaro
-    </address>
+    return <h1>Welcome to the contact page</h1>
+
 }
 
 export default Contact;
