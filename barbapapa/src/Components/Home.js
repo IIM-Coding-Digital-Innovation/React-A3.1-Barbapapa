@@ -3,6 +3,7 @@ import {Link, Route, Routes, useParams} from "react-router-dom";
 import About from "./About";
 import Contact from "./Contact";
 import Recipe from "./Recipe"
+import SearchBar from './Searchbar';
 
 function Home (){
     const [data, setData] = useState(null);
@@ -34,81 +35,58 @@ function Home (){
     }, []);
 
     return (
-        <div className="App">
-            <h1>API Posts</h1>
+        <div className="App home">
+            <h1>Welcome to Barbapapa !</h1>
+            <p>Find a recipe to your taste</p>
+
+            <SearchBar />
+
+            <h2>You may like these recipes :</h2>
+
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.quantity} {element.unit} {element.ingredient}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.wholeLine}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
             {!loading &&
                 <div>
                     <h3>Chargement...</h3>
                 </div>
             }
             {loading &&
-                <ul>
+                <div className='recipes'>
                     {data &&
                         data.results.map((el, i) => (
-                        <li key={i}>
-                            <Link to={`/recipe/${el.id}`}>{el.name}</Link>
-                        </li>
+                        <div className='recipe_box' key={i}>
+                            <img src={el.thumbnail_url} alt='{el.name}' />
+                            <h3>{el.name}</h3>
+                            <Link to={`/recipe/${el.id}`}>View recipe</Link>
+                        </div>
                     ))}
-                </ul>
+                </div>
             }
         </div>
     );
-}
 
-export default Home;
-import React, {useEffect, useState} from 'react';
-import './Home.css';
-import SearchBar from './Searchbar';
+// const Home = ({ recipes }) => {
+//     return (
+//         <div className='home'>
+//             <h1>Welcome to Barbapapa !</h1>
+//             <p>Find a recipe to your taste</p>
 
-const Home = ({ recipes }) => {
-    return (
-        <div className='home'>
-            <h1>Welcome to Barbapapa !</h1>
-            <p>Find a recipe to your taste</p>
+//             <SearchBar recipes={recipes} />
 
-            <SearchBar recipes={recipes} />
+//             <h2>You may like these recipes :</h2>
 
-            <h2>You may like these recipes :</h2>
+//             <div className='recipes'>
+//                 <div className='recipe_box'>
+//                     <h3>recipe title</h3>
+//                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
+//                     <a>View recipe</a>
+//                 </div>
 
-            <div className='recipes'>
-                <div className='recipe_box'>
-                    <h3>recipe title</h3>
-                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
-                    <a>View recipe</a>
-                </div>
+//             </div>
+//         </div>
 
-                <div className='recipe_box'>
-                    <h3>recipe title</h3>
-                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
-                    <a>View recipe</a>
-                </div>
-                <div className='recipe_box'>
-                    <h3>recipe title</h3>
-                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
-                    <a>View recipe</a>
-                </div>
-                <div className='recipe_box'>
-                    <h3>recipe title</h3>
-                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
-                    <a>View recipe</a>
-                </div>
-            </div>
-        </div>
-
-    );
+//     );
 };
 
 export default Home;

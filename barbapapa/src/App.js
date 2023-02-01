@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './App.css';
 import {
     BrowserRouter as Router,
     Routes,
@@ -18,7 +19,7 @@ class App extends Component {
             <Router>
 
                 <div className="App">
-                    <ul>
+                    <ul className="Nav">
                         <li>
                             <Link to="/">Home</Link>
 
