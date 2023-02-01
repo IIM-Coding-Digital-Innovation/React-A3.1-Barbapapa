@@ -3,12 +3,13 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link,
 } from 'react-router-dom';
 import {Component} from "react";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
+import Recipe from "./Components/Recipe";
 
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
                     <Route exact path='/' element={< Home />}></Route>
                     <Route exact path='/about' element={< About />}></Route>
                     <Route exact path='/contact' element={< Contact />}></Route>
+                    <Route exact path='/recipe/:recipeId' element={< Recipe />}></Route>
                 </Routes>
 
             </Router>
