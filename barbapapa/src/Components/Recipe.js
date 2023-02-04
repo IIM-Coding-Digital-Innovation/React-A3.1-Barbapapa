@@ -34,35 +34,50 @@ function Recipe (){
     }, []);
 
     return (
-        <div className="App">
-            <h1>API Recipe</h1>
+        <div className="RecipeCard">
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.quantity} {element.unit} {element.ingredient}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.wholeLine}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
+            
             {!loading &&
                 <div>
-                    <h3>Chargement...</h3>
+                    <h3>Loading...</h3>
                 </div>
             }
+
+            {loading &&
+                <div>
+                    <h1>{data.name}</h1>
+                    <img src={data.thumbnail_url} alt={data.name} />
+                </div>
+            }
+
             {loading &&
                 <ul>
                     {data &&
-                        data.instructions.map((el, i) => (
-                            <li key={i}>
-                                {el.display_text}
-                            </li>
+                        data.sections.map((el, i) => (
+                            el.components.map((l, j) => (
+                                <li key={j}>
+                                    {l.raw_text}
+                                </li>
+                            ))
                         ))}
                 </ul>
+            }
+
+            {loading &&
+
+                <div>
+                    <div className='RecipeCard'>
+                        {data &&
+                            data.instructions.map((el, i) => (
+                                <div key={i}>
+                                    {el.display_text}
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             }
             <Routes>
                 <Route exact path='/recipe' element={< Recipe />}></Route>

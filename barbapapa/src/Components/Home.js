@@ -48,7 +48,7 @@ function Home (){
             )}
             {!loading &&
                 <div>
-                    <h3>Chargement...</h3>
+                    <h3>Loading...</h3>
                 </div>
             }
             {loading &&
