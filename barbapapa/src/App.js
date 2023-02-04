@@ -11,6 +11,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Recipe from "./Components/Recipe";
+import Favorites from "./Components/Favorites";
 
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
                     <Route exact path='/about' element={< About />}></Route>
                     <Route exact path='/contact' element={< Contact />}></Route>
                     <Route exact path='/recipe/:recipeId' element={< Recipe />}></Route>
+                    <Route exact path='/favorites' element={< Favorites />}></Route>
                 </Routes>
 
             </Router>
