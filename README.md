@@ -10,12 +10,9 @@
 1. [Introduction](#-introduction-)
 2. [Languages & Tools](#-languages--tools-)
 3. [Authors](#-authors-)
-4. [GitHub](#-have-a-look-at-my-github-)
-5. [Contact](#-contact-me-)
-6. [Bonus](#-bonus-)
  
 ## 🖥 Introduction 🖥
-Barbapapa is a project about our shared passion : food. We love cooking so we wanted to create a website using React which would alow us to see recipes and save ingredients in a shopping list.
+Barbapapa is a project about our shared passion : food. We love cooking so we wanted to create a website using React which would alow us to search for recipes. When clicking on a recipe, you can see the ingredients, the instructions and a list of similar recipes.
 <br>
 To run the project :
 <br>
@@ -44,5 +41,7 @@ Hassina AYACHI aka Nyssa0
 Enas EL MERSHATI aka enas-elm
 Joanne MASSILLON aka joannemas
 ```
+
+<img alt="Kirby" width="25%" src="https://media.tenor.com/L4TD4MWFy40AAAAi/kirby.gif" />
 
 </div>
