@@ -1,99 +1,100 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Route, Routes, useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, Route, Routes, useParams} from "react-router-dom";
 
-function Recipe () {
-    const [favorites, setFavorites] = useState(
-        JSON.parse(localStorage.getItem('favorites')) || []
-    );
+function Recipe ({ posts }){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [recipe, setRecipe] = useState();
+    // const [item, setItem] = useState();
+
     let { recipeId } = useParams();
 
     useEffect(() => {
-        if (loading === false) {
-        fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
-            method: 'GET',
-            headers: {
-            'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
-            'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-            }
-        })
-            .then((response) => response.json())
-            .then((actualData) => {
-            setData(actualData);
-            setError(null);
-            setLoading(true)
+
+        if (loading === false){
+            fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+                }
             })
-            .catch((err) => {
-            setError(err.message);
-            setData(null);
-            });
+                .then((response) => response.json())
+                .then((actualData) => {
+                    console.log(actualData)
+                    setData(actualData);
+                    setRecipe(actualData);
+
+                    setError(null);
+                    setLoading(true)
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setData(null);
+                })
         }
+
     }, []);
 
 
-    const handleAddToFavorites = (recipe) => {
-        if (!favorites.includes(recipe)) {
-            setFavorites([...favorites, recipe]);
-            localStorage.setItem('favorites', JSON.stringify([...favorites, recipe]));
-        }
+    const handleSave = () => {
+        // const recipe = recipes.find(r => r.id === id);
+        localStorage.setItem(`recipe-${recipeId}`, JSON.stringify(recipe));
+        // localStorage.setItem('recipe', JSON.stringify(recipe));
+        console.log(recipe)
+        console.log("saved data")
     };
 
-    const isInFavorites = favorites.includes(data);
+
+
 
     return (
-        <div className="RecipeCard">
-        {error && (
-            <div>{`There is a problem fetching the post data - ${error}`}</div>
-        )}
-        
-        {!loading &&
-            <div>
-            <h3>Loading...</h3>
-            </div>
-        }
+        <div className="App">
+            {error && (
+                <div>{`There is a problem fetching the post data - ${error}`}</div>
+            )}
 
-        {loading &&
+            {!loading &&
+                <div>
+                    <h3>Chargement...</h3>
+                </div>
+            }
+
+            {loading &&
             <div>
             <h1>{data.name}</h1>
             <img src={data.thumbnail_url} alt={data.name} />
-            {isInFavorites ? (
-                <span>Recipe is on favorites list</span>
-                ) : (
-                <span><button onClick={() => handleAddToFavorites(data)}>
-                Add to Favorites
-                </button></span>
-                )}
+            <button onClick={handleSave}>Save</button>
             </div>
         }
 
-        {loading &&
-            <ul>
-            {data &&
-                data.sections.map((el, i) => (
-                el.components.map((l, j) => (
-                    <li key={j}>
-                    {l.raw_text}
-                    </li>
-                ))
-                ))}
-            </ul>
-        }
+            {loading &&
+                <ul>
+                    {data &&
+                        data.sections.map((el, i) => (
+                            el.components.map((l, j) => (
+                                <li key={j}>
+                                    {l.raw_text}
+                                </li>
+                            ))
+                        ))}
+                </ul>
+            }
 
-        {loading &&
-            <div>
-            <div className='RecipeCard'>
-                {data &&
-                data.instructions.map((el, i) => (
-                    <div key={i}>
-                    {el.display_text}
-                    </div>
-                ))
-                }
-            </div>
-            </div>
-        }
+            {loading &&
+                <ul>
+                    {data &&
+                        data.instructions.map((el, i) => (
+                            <li key={i}>
+                                {el.display_text}
+                            </li>
+                        ))}
+                </ul>
+            }
+            <Routes>
+                <Route exact path='/recipe' element={< Recipe />}></Route>
+            </Routes>
         </div>
     );
 }
