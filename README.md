@@ -18,6 +18,9 @@ Barbapapa is a project about our shared passion : food. We love cooking so we wa
  <br>
 :warning: For this project, we are using a freemium API that limits the number of requests. We created a brand new API key for the final commit BUT if you encounter any issue while testing the project, don't hesitate to ask us to renew the API key. You will also find a demo video below so that you can see the project working. We apologize in advance for the possible inconvenience. :warning:
 <br>
+
+If the website doesn't work, we thought of making a video to show how it suppose to look. Click <a href="https://youtu.be/snaycL8FYRE">here.</a>
+<br>
 To run the project :
 <br>
 ```npm install```
