@@ -21,6 +21,7 @@ Barbapapa is a project about our shared passion : food. We love cooking so we wa
 
 If the website doesn't work, we thought of making a video to show how it suppose to look. Click <a href="https://youtu.be/snaycL8FYRE">here.</a>
 <br>
+ 
 To run the project :
 <br>
 ```npm install```
