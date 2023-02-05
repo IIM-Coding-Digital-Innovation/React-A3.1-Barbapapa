@@ -73,10 +73,16 @@ function Recipe ({ posts }){
     // };
 
     const handleSave = () => {
-        localStorage.setItem('recipe', JSON.stringify(recipe));
+        // const recipe = recipes.find(r => r.id === id);
+        localStorage.setItem(`recipe-${recipeId}`, JSON.stringify(recipe));
+        // localStorage.setItem('recipe', JSON.stringify(recipe));
         console.log(recipe)
         console.log("saved data")
     };
+
+
+
+
     return (
         <div className="App">
             <h1>API Recipe</h1>

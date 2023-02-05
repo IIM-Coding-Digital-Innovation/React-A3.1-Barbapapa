@@ -6,28 +6,38 @@ function Saved () {
     // const [loading, setLoading] = useState(false);
     // const [error, setError] = useState(null);
 
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
+    //
+    // const [recipe, setRecipe] = useState(null);
 
-    const [recipe, setRecipe] = useState(null);
+    // useEffect(() => {
+    //     const storedRecipe = localStorage.getItem('recipe');
+    //     if (storedRecipe) {
+    //         setRecipe(JSON.parse(storedRecipe));
+    //     }
+    // }, []);
+
+    const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        const storedRecipe = localStorage.getItem('recipe');
-        if (storedRecipe) {
-            setRecipe(JSON.parse(storedRecipe));
+        const allRecipes = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith('recipe-')) {
+                const recipe = JSON.parse(localStorage.getItem(key));
+                allRecipes.push(recipe);
+            }
         }
+        setRecipes(allRecipes);
     }, []);
 
 
     return (
 
         <div>
-            {recipe ? (
-                <>
-                    <p>{recipe.id}</p>
-                </>
-            ) : (
-                <p>No recipe found in local storage.</p>
-            )}
+            {recipes.map(recipe => (
+                <p key={recipe.id}>{recipe.id} : {recipe.name} </p>
+            ))}
         </div>
     )
 
