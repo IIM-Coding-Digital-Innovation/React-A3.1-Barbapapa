@@ -15,7 +15,7 @@ function Home (){
         fetch(`https://tasty.p.rapidapi.com/recipes/list?q=${item}`, {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
             }
         })
@@ -36,8 +36,7 @@ function Home (){
             fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
-                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -59,15 +58,11 @@ function Home (){
         <div className="App home">
             <h1>Welcome to Barbapapa !</h1>
             <p>Find a recipe to your taste</p>
-
-            <SearchBar />
-
-            <h2>You may like these recipes :</h2>
             <div className="input">
                 <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
                 <button onClick={searchItem}>Search</button>
             </div>
-
+            <h2>You may like these recipes :</h2>
 
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
@@ -91,28 +86,6 @@ function Home (){
             }
         </div>
     );
-
-// const Home = ({ recipes }) => {
-//     return (
-//         <div className='home'>
-//             <h1>Welcome to Barbapapa !</h1>
-//             <p>Find a recipe to your taste</p>
-
-//             <SearchBar recipes={recipes} />
-
-//             <h2>You may like these recipes :</h2>
-
-//             <div className='recipes'>
-//                 <div className='recipe_box'>
-//                     <h3>recipe title</h3>
-//                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"} />
-//                     <a>View recipe</a>
-//                 </div>
-
-//             </div>
-//         </div>
-
-//     );
 };
 
 export default Home;
