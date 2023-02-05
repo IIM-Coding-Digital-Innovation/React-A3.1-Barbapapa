@@ -6,6 +6,7 @@ function Recipe ({ posts }){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [recipe, setRecipe] = useState();
+    // const [item, setItem] = useState();
 
     let { recipeId } = useParams();
 
@@ -16,24 +17,26 @@ function Recipe ({ posts }){
     //     }
     // };
 
-    const callAPI = async () => {
-        try {
-            const response = await fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
-                method: 'GET',
-                headers: {
-                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
-                    'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-                }
-            })
-            const data = await response.json();
-            localStorage.setItem('recipe', JSON.stringify(data));
-            setData(data);
-            console.log(data);
-            console.log("saved data")
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    // const callAPI = async () => {
+    //     try {
+    //         const response = await fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+    //                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    //             }
+    //         })
+    //         const data = await response.json();
+    //         localStorage.setItem('recipe', JSON.stringify(data));
+    //         setData(data);
+    //         console.log(data);
+    //         console.log("saved data")
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+
 
     useEffect(() => {
 
@@ -49,6 +52,8 @@ function Recipe ({ posts }){
                 .then((actualData) => {
                     console.log(actualData)
                     setData(actualData);
+                    setRecipe(actualData);
+
                     setError(null);
                     setLoading(true)
                 })
@@ -67,6 +72,11 @@ function Recipe ({ posts }){
     //     console.log("saved recipe")
     // };
 
+    const handleSave = () => {
+        localStorage.setItem('recipe', JSON.stringify(recipe));
+        console.log(recipe)
+        console.log("saved data")
+    };
     return (
         <div className="App">
             <h1>API Recipe</h1>
@@ -115,7 +125,9 @@ function Recipe ({ posts }){
             {/*<button onClick={() => click(data.name)}>Add Favt</button>*/}
 
 
-            <button onClick={callAPI}>Save Recipe</button>
+            {/*<button onClick={callAPI}>Save Recipe</button>*/}
+            <button onClick={handleSave}>Save</button>
+
             {/*<br/>*/}
             {/*<button onClick={showStorage}>Show Storage</button>*/}
 
