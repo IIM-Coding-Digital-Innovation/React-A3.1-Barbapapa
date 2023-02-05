@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 
-function Saved () {
+function Groceries () {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -28,8 +28,7 @@ function Saved () {
             {recipes.map(recipe => (
                 <div>
                     <img src={recipe.thumbnail_url} width="150" height="100" alt={recipe.name} />
-                    <p key={recipe.id}>{recipe.id} : {recipe.name} </p>
-                    <Link to={`/recipe/${recipe.id}`}>Voir recette</Link>
+                    <p key={recipe.id}>For the recipe : {recipe.name} </p>
                     <button onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>
 
                 </div>
@@ -38,4 +37,4 @@ function Saved () {
     )
 
 }
-export default Saved;
+export default Groceries;
