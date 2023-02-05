@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useParams} from "react-router-dom";
-import About from "./About";
-import Contact from "./Contact";
-import Recipe from "./Recipe"
-import SearchBar from './Searchbar';
+import './Home.css';
 
 function Home (){
     const [data, setData] = useState(null);
