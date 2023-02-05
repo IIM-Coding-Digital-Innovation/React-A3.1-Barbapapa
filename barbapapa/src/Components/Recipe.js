@@ -17,7 +17,7 @@ function Recipe ({ posts }){
             fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -38,7 +38,7 @@ function Recipe ({ posts }){
             fetch(`https://tasty.p.rapidapi.com/recipes/list-similarities?recipe_id=${recipeId}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -121,15 +121,17 @@ function Recipe ({ posts }){
 
             {loading &&
                 <div>
-                    <h2>Similar Recipes</h2>
-                    <ul>
+                    <h1>Similar Recipes</h1>
+                    <div className='Similar'>
                         {similarData &&
                             similarData.results.map((el, i) => (
-                                <li key={i}>
-                                    <Link to={`/recipe/${el.id}`}>{el.name}</Link>
-                                </li>
+                                <div className='recipe_box box_similar' key={i}>
+                                    <img src={el.thumbnail_url} alt='{el.name}' />
+                                    <h3>{el.name}</h3>
+                                    <Link to={`/recipe/${el.id}`}>View recipe</Link>
+                                </div>
                             ))}
-                    </ul>
+                    </div>
                 </div>
             }
 

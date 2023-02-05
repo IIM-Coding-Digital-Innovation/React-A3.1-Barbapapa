@@ -10,6 +10,7 @@ h1 {
     font-size: 70px;
     font-weight: 700;
     color: #FFAFCC;
+    text-align: center;
 }
 
 input {
@@ -121,4 +122,19 @@ h2 {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+}
+
+.Similar {
+    display : grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 60%;
+    margin: auto;
+}
+
+.box_similar h3{
+    font-size: 14px;
+}
+.box_similar img {
+    width: 70%;
+    height: auto;
 }
