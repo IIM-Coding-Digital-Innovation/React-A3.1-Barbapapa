@@ -11,6 +11,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Recipe from "./Components/Recipe";
 import Saved from "./Components/Saved";
+import List from "./Components/List";
 
 
 class App extends Component {
@@ -44,6 +45,8 @@ class App extends Component {
                     <Route exact path='/about' element={< About />}></Route>
                     <Route exact path='/contact' element={< Contact />}></Route>
                     <Route exact path='/saved' element={< Saved />}></Route>
+
+                    <Route exact path='/list' element={< List />}></Route>
 
                     <Route exact path='/recipe/:recipeId' element={< Recipe />}></Route>
                 </Routes>
