@@ -1,42 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useParams} from "react-router-dom";
 
-function Recipe ({ posts }){
+function Recipe (){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [recipe, setRecipe] = useState();
-    // const [item, setItem] = useState();
 
     let { recipeId } = useParams();
-
-    // const showStorage = async () => {
-    //     const recipe = JSON.parse(localStorage.getItem('recipe'));
-    //     if (recipe) {
-    //         setRecipe(recipe);
-    //     }
-    // };
-
-    // const callAPI = async () => {
-    //     try {
-    //         const response = await fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
-    //                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-    //             }
-    //         })
-    //         const data = await response.json();
-    //         localStorage.setItem('recipe', JSON.stringify(data));
-    //         setData(data);
-    //         console.log(data);
-    //         console.log("saved data")
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
-
 
     useEffect(() => {
 
@@ -65,22 +36,13 @@ function Recipe ({ posts }){
 
     }, []);
 
-    // const click = (name) => {
-    //     const data = posts.find((post) => post.name === name);
-    //     const localStorageItems = JSON.parse(localStorage.getItem('datas')) || [].
-    //     localStorage.setItem('datas', JSON.stringify([...localStorageItems, data]))
-    //     console.log("saved recipe")
-    // };
+
 
     const handleSave = () => {
-        // const recipe = recipes.find(r => r.id === id);
         localStorage.setItem(`recipe-${recipeId}`, JSON.stringify(recipe));
-        // localStorage.setItem('recipe', JSON.stringify(recipe));
         console.log(recipe)
         console.log("saved data")
     };
-
-
 
 
     return (
@@ -89,16 +51,6 @@ function Recipe ({ posts }){
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.quantity} {element.unit} {element.ingredient}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.wholeLine}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
             {!loading &&
                 <div>
                     <h3>Chargement...</h3>
@@ -128,27 +80,7 @@ function Recipe ({ posts }){
                 </ul>
             }
 
-            {/*<button onClick={() => click(data.name)}>Add Favt</button>*/}
-
-
-            {/*<button onClick={callAPI}>Save Recipe</button>*/}
             <button onClick={handleSave}>Save</button>
-
-            {/*<br/>*/}
-            {/*<button onClick={showStorage}>Show Storage</button>*/}
-
-            {/*{loading &&*/}
-            {/*<ul>*/}
-            {/*    {recipe &&*/}
-            {/*    recipe.instructions.map((el, i) => (*/}
-            {/*        <li key={i}>*/}
-            {/*            {el.display_text}*/}
-            {/*        </li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
-            {/*}*/}
-
-            {/*{recipe && <pre>{JSON.stringify(recipe, null, 4)}</pre>}*/}
             <Routes>
                 <Route exact path='/recipe' element={< Recipe />}></Route>
             </Routes>
