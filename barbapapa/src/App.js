@@ -12,7 +12,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Recipe from "./Components/Recipe";
 import Saved from "./Components/Saved";
-import Groceries from "./Components/Groceries";import Favorites from "./Components/Favorites";
+import Groceries from "./Components/Groceries";
 
 
 class App extends Component {
@@ -51,9 +51,7 @@ class App extends Component {
                     <Route exact path='/contact' element={< Contact/>}/>
                     <Route exact path='/saved' element={< Saved/>}/>
                     <Route exact path='/groceries' element={< Groceries/>}/>
-
                     <Route exact path='/recipe/:recipeId' element={< Recipe/>}/>
-                    <Route exact path='/favorites' element={< Favorites />}></Route>
                 </Routes>
 
             </Router>
