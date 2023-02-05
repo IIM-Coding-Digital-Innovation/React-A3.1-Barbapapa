@@ -13,6 +13,8 @@
  
 ## 🖥 Introduction 🖥
 Barbapapa is a project about our shared passion : food. We love cooking so we wanted to create a website using React which would alow us to search for recipes. When clicking on a recipe, you can see the ingredients, the instructions and a list of similar recipes.
+ <br>
+:warning: For this project, we are using a freemium API that limits the number of requests. We created a brand new API key for the final commit BUT if you encounter any issue while testing the project, don't hesitate to ask us to renew the API key. You will also find a demo video below so that you can see the project working. We apologize in advance for the possible inconvenience. :warning:
 <br>
 To run the project :
 <br>
