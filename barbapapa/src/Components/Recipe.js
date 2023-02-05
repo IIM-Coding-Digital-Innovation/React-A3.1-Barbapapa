@@ -77,7 +77,8 @@ function Recipe ({ posts }){
 
             {!loading &&
                 <div>
-                    <h3>Loading...</h3>
+                    <iframe src="https://giphy.com/embed/Pqf31C9P1AuIg" width="480" height="360" frameBorder="0"
+                            className="giphy-embed" allowFullScreen></iframe>
                 </div>
             }
 
