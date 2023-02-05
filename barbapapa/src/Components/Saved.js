@@ -1,20 +1,81 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useParams} from "react-router-dom";
 
 function Saved () {
-    const [recipe, setRecipe] = useState ( () => {
-        const savedItem = localStorage.getItem("userName");
-        const parsedItem = JSON.parse(savedItem);
-        return parsedItem || "";
-    });
+    const [data, setData] = React.useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const getStorageData = (keyName, defaultValue) =>{
-        const savedItem = localStorage.getItem(keyName);
-        const parsedItem = JSON.parse(savedItem);
-        return parsedItem || defaultValue;
+    let { recipeId } = useParams();
+
+
+    const localData = localStorage.getItem('data');
+
+    if (localData) {
+        setData(JSON.parse(localData));
+        return;
     }
+    // useEffect(() => {
+        if (loading === false){
+            fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+                }
+            })
+                .then((response) => response.json())
+                .then(data => {
+                    setData(data);
+                    setError(null);
+                    setLoading(true);
+                    localStorage.setItem('data', JSON.stringify(data));
+
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setData(null);
+                });
+        }
+
+    // }, [data]);
+    //
+    // const DataPage = ({ data }) => {
+    //     return (
+    //         <div>
+    //             {data.map(item => (
+    //                 <div key={item.id}>{item.name}</div>
+    //             ))}
+    //         </div>
+    //     );
+    // };
+
+
 
     return (
-        <h1>Saved Recipe</h1>
+
+    <div>
+        {error && (
+            <div>{`There is a problem fetching the post data - ${error}`}</div>
+        )}
+        {!loading &&
+        <div>
+            <h3>Chargement...</h3>
+        </div>
+        }
+        {loading &&
+        <ul>
+            {data &&
+            data.sections.map((el, i) => (
+                el.components.map((l, j) => (
+                    <li key={j}>
+                        {l.raw_text}
+                    </li>
+                ))
+            ))}
+        </ul>
+        }
+    </div>
     )
 
 }
