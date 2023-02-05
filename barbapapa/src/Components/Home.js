@@ -8,14 +8,34 @@ function Home (){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [item, setItem] = useState("");
 
+    const searchItem = () => {
+        fetch(`https://tasty.p.rapidapi.com/recipes/list?q=${item}`, {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+            }
+        })
+            .then((response) => response.json())
+            .then((researchedData) => {
+                setData(researchedData);
+                setError(null);
+                setLoading(true)
+            })
+            .catch((err) => {
+                setError(err.message);
+                setData(null);
+            })
+    };
 
     useEffect(() => {
         if (loading === false){
             fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -36,19 +56,14 @@ function Home (){
     return (
         <div className="App">
             <h1>API Posts</h1>
+            <div className="input">
+                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
+                <button onClick={searchItem}>Search</button>
+            </div>
+
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.quantity} {element.unit} {element.ingredient}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
-            {/*<ul>*/}
-            {/*    {data2.map((element) => (*/}
-            {/*        <li>{element.wholeLine}</li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
             {!loading &&
                 <div>
                     <h3>Chargement...</h3>
