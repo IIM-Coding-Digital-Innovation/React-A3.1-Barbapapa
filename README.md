@@ -6,7 +6,7 @@
 
 # Barbapapa
  
- ### Link to the website : <a href="barbapapa.netlify.app">barbapapa.netlify.app</a>
+ ### Link to the website : <a href="[barbapapa.netlify.app](https://barbapapa.netlify.app/)">barbapapa.netlify.app</a>
 
 ## Table of contents
 1. [Introduction](#-introduction-)
