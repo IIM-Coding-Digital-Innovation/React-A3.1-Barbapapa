@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useParams} from "react-router-dom";
 
-function Recipe ({ posts }){
+function Recipe (){
     const [data, setData] = useState(null);
     const [similarData, setSimilarData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -17,13 +17,13 @@ function Recipe ({ posts }){
             fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
+                    'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
                 .then((response) => response.json())
                 .then((actualData) => {
-                    // console.log(actualData)
+                    console.log(actualData)
                     setData(actualData);
                     setRecipe(actualData);
 
@@ -38,7 +38,7 @@ function Recipe ({ posts }){
             fetch(`https://tasty.p.rapidapi.com/recipes/list-similarities?recipe_id=${recipeId}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '87d119cf7cmsh0b635d3245ed007p1fbe7ajsn44560d0d6180',
+                    'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -74,72 +74,75 @@ function Recipe ({ posts }){
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
-
             {!loading &&
-                <div>
-                    <iframe src="https://giphy.com/embed/Pqf31C9P1AuIg" width="480" height="360" frameBorder="0"
-                            className="giphy-embed" allowFullScreen></iframe>
-                </div>
+            <div>
+                <iframe src="https://giphy.com/embed/Pqf31C9P1AuIg" width="480" height="360" frameBorder="0"
+                        className="giphy-embed" allowFullScreen></iframe>
+            </div>
             }
 
             {loading &&
-            <div className='RecipeInfos'>
+
+            data &&
+                <div className='RecipeInfos'>
                 <h1>{data.name}</h1>
                 <img src={data.thumbnail_url} alt={data.name} />
                 <button onClick={handleSave}>Save recipe</button>
+
+                </div>
+            }
+
+            {loading &&
+            <div className='RecipeDetails'>
+                <h2>Ingredients</h2>
+                <ul>
+                    {data &&
+                    data?.sections.map((el, i) => (
+                        el.components.map((l, j) => (
+                            <li key={j}>
+                                {l.raw_text}
+                            </li>
+                        ))
+                    ))}
+                </ul>
             </div>
-        }
-
-            {loading &&
-                <div className='RecipeDetails'>
-                    <h2>Ingredients</h2>
-                    <ul>
-                        {data &&
-                            data.sections.map((el, i) => (
-                                el.components.map((l, j) => (
-                                    <li key={j}>
-                                        {l.raw_text}
-                                    </li>
-                                ))
-                            ))}
-                    </ul>
-                </div>
             }
 
             {loading &&
-                <div className='RecipeDetails'>
-                    <h2>Instructions</h2>
-                    <ul>
-                        {data &&
-                            data.instructions.map((el, i) => (
-                                <li key={i}>
-                                    {el.display_text}
-                                </li>
-                            ))}
-                    </ul>
-                </div>
+            <div className='RecipeDetails'>
+                <h2>Instructions</h2>
+                <ul>
+                    {data &&
+                    data.instructions.map((el, i) => (
+                        <li key={i}>
+                            {el.display_text}
+                        </li>
+                    ))}
+                </ul>
+            </div>
             }
 
+
             {loading &&
-                <div>
-                    <h1>Similar Recipes</h1>
-                    <div className='Similar'>
-                        {similarData &&
-                            similarData.results.map((el, i) => (
-                                <div className='recipe_box box_similar' key={i}>
-                                    <img src={el.thumbnail_url} alt='{el.name}' />
-                                    <h3>{el.name}</h3>
-                                    <Link to={`/recipe/${el.id}`}>View recipe</Link>
+                            <div>
+                                <h1>Similar Recipes</h1>
+                                <div className='Similar'>
+                                    {similarData &&
+                                        similarData.results.map((el, i) => (
+                                            <div className='recipe_box box_similar' key={i}>
+                                                <img src={el.thumbnail_url} alt='{el.name}' />
+                                                <h3>{el.name}</h3>
+                                                {/* <Link to={`/recipe/${el.id}`}>View recipe</Link> */}
+                                            </div>
+                                        ))}
                                 </div>
-                            ))}
+                            </div>
+                        }
+
+
+
                     </div>
-                </div>
-            }
-
-
-
-        </div>
-    );
+                );
 }
 
 export default Recipe;

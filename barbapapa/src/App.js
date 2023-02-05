@@ -10,7 +10,7 @@ import {Component} from "react";
 import Home from "./Components/Home";
 import Recipe from "./Components/Recipe";
 import Saved from "./Components/Saved";
-import Groceries from "./Components/Groceries";
+import List from "./Components/List";
 
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
 
                         </li>
                         <li>
-                            <Link to="/groceries">Shopping list</Link>
+                            <Link to="/list">Shopping list</Link>
 
                         </li>
                     </ul>
@@ -38,7 +38,7 @@ class App extends Component {
                 <Routes>
                     <Route exact path='/' element={< Home/>}/>
                     <Route exact path='/saved' element={< Saved/>}/>
-                    <Route exact path='/groceries' element={< Groceries/>}/>
+                    <Route exact path='/list' element={< List/>}/>
                     <Route exact path='/recipe/:recipeId' element={< Recipe/>}/>
                 </Routes>
 
