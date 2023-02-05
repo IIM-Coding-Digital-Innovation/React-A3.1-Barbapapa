@@ -29,7 +29,7 @@ function Saved () {
                 <div>
                     <img src={recipe.thumbnail_url} width="150" height="100" alt={recipe.name} />
                     <p key={recipe.id}>{recipe.id} : {recipe.name} </p>
-                    <Link to={`/recipe/${recipe.id}`}>Voir recette</Link>
+                    <Link to={`/recipe/${recipe.id}`}>View recipe</Link>
                     <button onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>
 
                 </div>

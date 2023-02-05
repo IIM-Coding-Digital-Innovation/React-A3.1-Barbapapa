@@ -50,47 +50,53 @@ function Recipe ({ posts }){
 
 
     return (
-        <div className="App">
+        <div className="SingleRecipe">
             {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
             )}
 
             {!loading &&
                 <div>
-                    <h3>Chargement...</h3>
+                    <h3>Loading...</h3>
                 </div>
             }
 
             {loading &&
-            <div>
-            <h1>{data.name}</h1>
-            <img src={data.thumbnail_url} alt={data.name} />
-            <button onClick={handleSave}>Save</button>
+            <div className='RecipeInfos'>
+                <h1>{data.name}</h1>
+                <img src={data.thumbnail_url} alt={data.name} />
+                <button onClick={handleSave}>Save recipe</button>
             </div>
         }
 
             {loading &&
-                <ul>
-                    {data &&
-                        data.sections.map((el, i) => (
-                            el.components.map((l, j) => (
-                                <li key={j}>
-                                    {l.raw_text}
-                                </li>
-                            ))
-                        ))}
-                </ul>
+                <div className='RecipeDetails'>
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {data &&
+                            data.sections.map((el, i) => (
+                                el.components.map((l, j) => (
+                                    <li key={j}>
+                                        {l.raw_text}
+                                    </li>
+                                ))
+                            ))}
+                    </ul>
+                </div>
             }
 
             {loading &&
-                <ul>
-                    {data &&
-                        data.instructions.map((el, i) => (
-                            <li key={i}>
-                                {el.display_text}
-                            </li>
-                        ))}
-                </ul>
+                <div className='RecipeDetails'>
+                    <h2>Instructions</h2>
+                    <ul>
+                        {data &&
+                            data.instructions.map((el, i) => (
+                                <li key={i}>
+                                    {el.display_text}
+                                </li>
+                            ))}
+                    </ul>
+                </div>
             }
             <Routes>
                 <Route exact path='/recipe' element={< Recipe />}></Route>

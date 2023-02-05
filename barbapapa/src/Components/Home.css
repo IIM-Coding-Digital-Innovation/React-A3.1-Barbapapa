@@ -94,3 +94,31 @@ h2 {
     cursor: pointer;
 }
 
+.SingleRecipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RecipeInfos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.RecipeInfos img {
+    width: 50%; 
+    border-radius: 5px;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
+
+.RecipeDetails {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
