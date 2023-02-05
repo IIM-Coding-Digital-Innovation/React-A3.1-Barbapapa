@@ -1,11 +1,39 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, Routes, useParams} from "react-router-dom";
 
-function Recipe (){
+function Recipe ({ posts }){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [recipe, setRecipe] = useState();
+
     let { recipeId } = useParams();
+
+    // const showStorage = async () => {
+    //     const recipe = JSON.parse(localStorage.getItem('recipe'));
+    //     if (recipe) {
+    //         setRecipe(recipe);
+    //     }
+    // };
+
+    const callAPI = async () => {
+        try {
+            const response = await fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
+                    'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+                }
+            })
+            const data = await response.json();
+            localStorage.setItem('recipe', JSON.stringify(data));
+            setData(data);
+            console.log(data);
+            console.log("saved data")
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
 
@@ -13,7 +41,7 @@ function Recipe (){
             fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -31,6 +59,13 @@ function Recipe (){
         }
 
     }, []);
+
+    // const click = (name) => {
+    //     const data = posts.find((post) => post.name === name);
+    //     const localStorageItems = JSON.parse(localStorage.getItem('datas')) || [].
+    //     localStorage.setItem('datas', JSON.stringify([...localStorageItems, data]))
+    //     console.log("saved recipe")
+    // };
 
     return (
         <div className="App">
@@ -76,6 +111,26 @@ function Recipe (){
                         ))}
                 </ul>
             }
+
+            {/*<button onClick={() => click(data.name)}>Add Favt</button>*/}
+
+
+            <button onClick={callAPI}>Save Recipe</button>
+            {/*<br/>*/}
+            {/*<button onClick={showStorage}>Show Storage</button>*/}
+
+            {/*{loading &&*/}
+            {/*<ul>*/}
+            {/*    {recipe &&*/}
+            {/*    recipe.instructions.map((el, i) => (*/}
+            {/*        <li key={i}>*/}
+            {/*            {el.display_text}*/}
+            {/*        </li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
+            {/*}*/}
+
+            {/*{recipe && <pre>{JSON.stringify(recipe, null, 4)}</pre>}*/}
             <Routes>
                 <Route exact path='/recipe' element={< Recipe />}></Route>
             </Routes>
