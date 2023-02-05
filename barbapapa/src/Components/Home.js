@@ -16,7 +16,7 @@ function Home (){
             fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fb10d2be60msh7e23a669d9c6628p136c7fjsn40a6b3370e73',
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
