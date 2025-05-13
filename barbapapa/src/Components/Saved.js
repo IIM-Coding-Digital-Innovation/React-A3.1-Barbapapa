@@ -25,16 +25,16 @@ function Saved () {
     return (
         <div>
             <h1>Saved Recipes</h1>
-            <div className='recipes'>
+            <ul className='recipes'>
             {recipes.map(recipe => (
-                <div className='recipe_box'>
+                <li className='recipe_box'>
                     <img src={recipe.thumbnail_url} loading="lazy" width="150" height="100" alt={recipe.name} />
                     <p key={recipe.id}>{recipe.name} </p>
                     <Link to={`/recipe/${recipe.id}`}>View recipe</Link>
                     <button className="remove-btn" onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>
-                </div>
+                </li>
             ))}
-            </div>
+            </ul>
         </div>
     )
 

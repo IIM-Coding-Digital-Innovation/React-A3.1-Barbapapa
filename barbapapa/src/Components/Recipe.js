@@ -75,6 +75,7 @@ function Recipe() {
                         frameBorder="0"
                         className="giphy-embed"
                         allowFullScreen
+                        title='loading'
                     ></iframe>
                 </div>
             )}
@@ -113,16 +114,16 @@ function Recipe() {
 
             {!loading && similarData && (
                 <div>
-                    <h1>Similar Recipes</h1>
-                    <div className="Similar">
+                    <h2 className='similar-title'>Similar Recipes</h2>
+                    <ul className="Similar">
                         {similarData.results?.map((el, i) => (
-                            <div className="recipe_box box_similar" key={i}>
+                            <li className="recipe_box box_similar" key={i}>
                                 <img loading="lazy" src={el.thumbnail_url} alt={el.name} />
-                                <h3>{el.name}</h3>
+                                <p>{el.name}</p>
                                 <Link to={`/recipe/${el.id}`}>View recipe</Link>
-                            </div>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
             )}
         </div>

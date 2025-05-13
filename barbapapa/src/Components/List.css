@@ -1,3 +1,9 @@
+ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .delete{
     border: none;
     background-color: rgb(194, 93, 93);
@@ -66,6 +72,10 @@
 
 .added-ingredient{
     cursor: pointer;
+}
+
+.similar-title{
+    text-align: center;
 }
 
 @media (max-width: 768px) {

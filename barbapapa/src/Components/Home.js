@@ -69,7 +69,7 @@ function Home (){
             {!loading &&
                 <div>
                     <iframe src="https://giphy.com/embed/Pqf31C9P1AuIg" width="480" height="360" frameBorder="0"
-                            className="giphy-embed" allowFullScreen></iframe>
+                            className="giphy-embed" title='loading' allowFullScreen></iframe>
                 </div>
             }
             {loading &&
