@@ -60,21 +60,20 @@ h2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    align-items: stretch; /* Changed to stretch to ensure equal height */
+    align-items: stretch;
     margin: 0 5%;
-    gap: 20px; /* Optional: replaces margin on .recipe_box for cleaner spacing */
+    gap: 20px;
 }
 
 .recipe_box {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures content spreads evenly */
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 10px 0 rgba(130, 130, 130, 0.51);
     padding: 20px 10px;
     border-radius: 20px;
     background-color: #ffffff;
-    min-height: 450px; /* Set a minimum height to ensure uniformity */
 }
 
 .recipe_box img {
@@ -139,6 +138,7 @@ h2 {
     grid-template-columns: repeat(4, 1fr);
     width: 60%;
     margin: auto;
+    gap: 20px;
 }
 
 .box_similar h3{
@@ -195,7 +195,6 @@ h2 {
     .Similar {
         grid-template-columns: repeat(2, 1fr);
         width: 80%;
-        gap: 20px;
     }
 
     .box_similar img {
