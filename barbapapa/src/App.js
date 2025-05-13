@@ -30,8 +30,8 @@ class App extends Component {
                         </li>
                         <li>
                             <Link to="/list">Shopping list</Link>
-
                         </li>
+                        <button onClick={() => {throw new Error("This is your first error!");}}>Break the world</button>
                     </ul>
                 </div>
 
