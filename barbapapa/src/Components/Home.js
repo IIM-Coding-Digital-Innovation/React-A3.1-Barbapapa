@@ -77,7 +77,7 @@ function Home (){
                     {data &&
                         data.results.map((el, i) => (
                         <li className='recipe_box' key={i}>
-                            <img src={el.thumbnail_url} alt='{el.name}' />
+                            <img src={el.thumbnail_url} loading="lazy" alt='{el.name}' />
                             <p>{el.name}</p>
                             <Link to={`/recipe/${el.id}`}>View recipe</Link>
                         </li>

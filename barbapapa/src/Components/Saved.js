@@ -28,7 +28,7 @@ function Saved () {
             <div className='recipes'>
             {recipes.map(recipe => (
                 <div className='recipe_box'>
-                    <img src={recipe.thumbnail_url} width="150" height="100" alt={recipe.name} />
+                    <img src={recipe.thumbnail_url} loading="lazy" width="150" height="100" alt={recipe.name} />
                     <p key={recipe.id}>{recipe.name} </p>
                     <Link to={`/recipe/${recipe.id}`}>View recipe</Link>
                     <button className="remove-btn" onClick={() => handleRemoveRecipe(recipe.id)}>Remove</button>

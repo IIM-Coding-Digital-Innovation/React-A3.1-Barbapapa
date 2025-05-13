@@ -117,7 +117,7 @@ function Recipe() {
                     <div className="Similar">
                         {similarData.results?.map((el, i) => (
                             <div className="recipe_box box_similar" key={i}>
-                                <img src={el.thumbnail_url} alt={el.name} />
+                                <img loading="lazy" src={el.thumbnail_url} alt={el.name} />
                                 <h3>{el.name}</h3>
                                 <Link to={`/recipe/${el.id}`}>View recipe</Link>
                             </div>
