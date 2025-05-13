@@ -54,7 +54,7 @@ function Home (){
     return (
         <div className="App home">
             <h1>Welcome to Barbapapa !</h1>
-            <p>Find a recipe to your taste</p>
+            <p>Find a recipe base of your main ingredient</p>
             <div className="input">
                 <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
                 <button onClick={searchItem}>Search</button>
@@ -84,6 +84,6 @@ function Home (){
             }
         </div>
     );
-};
+}
 
 export default Home;
