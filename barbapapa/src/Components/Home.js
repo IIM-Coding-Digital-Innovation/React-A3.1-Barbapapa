@@ -12,7 +12,7 @@ function Home (){
         fetch(`https://tasty.p.rapidapi.com/recipes/list?q=${item}`, {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
+                'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
             }
         })
@@ -33,7 +33,7 @@ function Home (){
             fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
@@ -54,9 +54,11 @@ function Home (){
     return (
         <div className="App home">
             <h1>Welcome to Barbapapa !</h1>
-            <p>Find a recipe to your taste</p>
+
+            <h2>Find a recipe base of your main ingredient</h2>
+
             <div className="input">
-                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
+                <input type='text' name='search' value={item} onChange={(e) => setItem(e.target.value)} aria-label="Search for a recipe" />
                 <button onClick={searchItem}>Search</button>
             </div>
             <h2>You may like these recipes :</h2>
@@ -67,23 +69,23 @@ function Home (){
             {!loading &&
                 <div>
                     <iframe src="https://giphy.com/embed/Pqf31C9P1AuIg" width="480" height="360" frameBorder="0"
-                            className="giphy-embed" allowFullScreen></iframe>
+                            className="giphy-embed" title='loading' allowFullScreen></iframe>
                 </div>
             }
             {loading &&
-                <div className='recipes'>
+                <ul className='recipes'>
                     {data &&
                         data.results.map((el, i) => (
-                        <div className='recipe_box' key={i}>
-                            <img src={el.thumbnail_url} alt='{el.name}' />
-                            <h3>{el.name}</h3>
+                        <li className='recipe_box' key={i}>
+                            <img src={el.thumbnail_url} loading="lazy" alt='{el.name}' />
+                            <p>{el.name}</p>
                             <Link to={`/recipe/${el.id}`}>View recipe</Link>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             }
         </div>
     );
-};
+}
 
 export default Home;

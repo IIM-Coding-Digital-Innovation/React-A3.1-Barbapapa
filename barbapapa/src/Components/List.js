@@ -56,7 +56,7 @@ const List = () => {
             <p>Click on the ingredient name to cross it out</p>
 
             <div className="input">
-                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
+                <input type='text' name='add-item' aria-label="Add item" value={item} onChange={(e) => setItem(e.target.value)} />
                 <button onClick={addItem}>Add</button>
             </div>
 
@@ -64,7 +64,7 @@ const List = () => {
 
             {list.map((item, index) => (
                     <div>
-                        <li>
+                        <li className="added-ingredient">
                         <p onClick={(e) => e.target.classList.toggle('checked')} >&#8226; {item}</p>
 
 

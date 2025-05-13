@@ -1,3 +1,9 @@
+ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .delete{
     border: none;
     background-color: rgb(194, 93, 93);
@@ -62,4 +68,37 @@
 .ingredient {
     cursor: pointer;
     margin: 2px;
+}
+
+.added-ingredient{
+    cursor: pointer;
+}
+
+.similar-title{
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #shopping-list{
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    #shopping-list p{
+        text-align: center;
+    }
+
+    #shopping-list ul{
+        padding: 20px;
+    }
+
+    .delete{
+        width: fit-content;
+        margin: auto;
+    }
+
+    input{
+        width: 80%;
+    }
 }

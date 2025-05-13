@@ -1,5 +1,5 @@
 .Nav {
-    background-color: #FFAFCC;
+    background-color: #af2658;
     margin: 0;
     display: flex;
     list-style: none;
@@ -11,4 +11,14 @@
     padding: 20px 5px;
     font-size: 20px;
     font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .Nav {
+        justify-content: space-evenly;
+        padding: 0;
+    }
+    .Nav a, .Nav li {
+        padding: 20px 0;
+    }
 }
