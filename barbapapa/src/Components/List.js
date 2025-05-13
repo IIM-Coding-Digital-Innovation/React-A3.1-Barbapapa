@@ -64,7 +64,7 @@ const List = () => {
 
             {list.map((item, index) => (
                     <div>
-                        <li>
+                        <li className="added-ingredient">
                         <p onClick={(e) => e.target.classList.toggle('checked')} >&#8226; {item}</p>
 
 

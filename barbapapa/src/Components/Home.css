@@ -32,7 +32,6 @@ button {
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
-    font-size: 20px;
     font-weight: 700;
 }
 
@@ -40,6 +39,15 @@ button:hover {
     background-color: #45a3fc;
     color: #ffffff;
     cursor: pointer;
+}
+
+.remove-btn{
+    background-color: #f6587d;
+    font-size: 14px;
+}
+
+.remove-btn:hover{
+    background-color: #f6587d;
 }
 
 h2 {
@@ -52,26 +60,25 @@ h2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    margin: 0 100px;
+    align-items: stretch; /* Changed to stretch to ensure equal height */
+    margin: 0 5%;
+    gap: 20px; /* Optional: replaces margin on .recipe_box for cleaner spacing */
 }
 
 .recipe_box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between; /* Ensures content spreads evenly */
     align-items: center;
-    margin-top: 50px;
     box-shadow: 0 0 10px 0 rgba(130, 130, 130, 0.51);
-    margin: 10px;
     padding: 20px 10px;
     border-radius: 20px;
     background-color: #ffffff;
+    min-height: 450px; /* Set a minimum height to ensure uniformity */
 }
 
 .recipe_box img {
-    width: 300px; 
+    width: 300px;
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
@@ -81,6 +88,8 @@ h2 {
     font-size: 20px;
     font-weight: 700;
     margin-top: 10px;
+    text-align: center; /* Optional: ensures text is centered */
+    flex-grow: 1; /* Allows the title to take available space */
 }
 
 .recipe_box a {
@@ -93,6 +102,7 @@ h2 {
     color: #ffffff;
     text-decoration: none;
     cursor: pointer;
+    text-align: center; /* Centers the text in the button */
 }
 
 .SingleRecipe {
@@ -137,4 +147,64 @@ h2 {
 .box_similar img {
     width: 70%;
     height: auto;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.giphy-embed{
+    width: 100%;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    h1{
+        font-size: 42px;
+    }
+
+    h2{
+        font-size: 24px;
+    }
+
+    .recipes {
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .recipe_box {
+        min-height: 330px;
+    }
+
+    .recipe_box img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .RecipeInfos img {
+        width: 100%;
+    }
+
+    .RecipeDetails {
+        width: 90%;
+    }
+
+    .Similar {
+        grid-template-columns: repeat(2, 1fr);
+        width: 80%;
+        gap: 20px;
+    }
+
+    .box_similar img {
+        width: 100%;
+        height: auto;
+    }
+
+    h3{
+        font-size: 12px;
+    }
+
+
 }

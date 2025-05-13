@@ -63,3 +63,32 @@
     cursor: pointer;
     margin: 2px;
 }
+
+.added-ingredient{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #shopping-list{
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    #shopping-list p{
+        text-align: center;
+    }
+
+    #shopping-list ul{
+        padding: 20px;
+    }
+
+    .delete{
+        width: fit-content;
+        margin: auto;
+    }
+
+    input{
+        width: 80%;
+    }
+}

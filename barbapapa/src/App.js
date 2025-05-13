@@ -19,7 +19,7 @@ class App extends Component {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/saved">Saved</Link></li>
                     <li><Link to="/list">Shopping list</Link></li>
-                    <button onClick={() => { throw new Error("This is your first error!"); }}>Break the world</button>
+                    {/*<button onClick={() => { throw new Error("This is your first error!"); }}>Break the world</button>*/}
                 </ul>
 
                 <Routes>
