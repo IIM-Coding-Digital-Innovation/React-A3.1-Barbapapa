@@ -54,9 +54,11 @@ function Home (){
     return (
         <div className="App home">
             <h1>Welcome to Barbapapa !</h1>
-            <p>Find a recipe base of your main ingredient</p>
+
+            <h2>Find a recipe base of your main ingredient</h2>
+
             <div className="input">
-                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} />
+                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} aria-label="Search for a recipe" />
                 <button onClick={searchItem}>Search</button>
             </div>
             <h2>You may like these recipes :</h2>
@@ -71,16 +73,16 @@ function Home (){
                 </div>
             }
             {loading &&
-                <div className='recipes'>
+                <ul className='recipes'>
                     {data &&
                         data.results.map((el, i) => (
-                        <div className='recipe_box' key={i}>
+                        <li className='recipe_box' key={i}>
                             <img src={el.thumbnail_url} alt='{el.name}' />
-                            <h3>{el.name}</h3>
+                            <p>{el.name}</p>
                             <Link to={`/recipe/${el.id}`}>View recipe</Link>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             }
         </div>
     );
