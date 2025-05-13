@@ -58,7 +58,7 @@ function Home (){
             <h2>Find a recipe base of your main ingredient</h2>
 
             <div className="input">
-                <input type='text' value={item} onChange={(e) => setItem(e.target.value)} aria-label="Search for a recipe" />
+                <input type='text' name='search' value={item} onChange={(e) => setItem(e.target.value)} aria-label="Search for a recipe" />
                 <button onClick={searchItem}>Search</button>
             </div>
             <h2>You may like these recipes :</h2>
