@@ -12,7 +12,7 @@ function Home (){
         fetch(`https://tasty.p.rapidapi.com/recipes/list?q=${item}`, {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
+                'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
             }
         })
@@ -33,7 +33,7 @@ function Home (){
             fetch(`https://tasty.p.rapidapi.com/recipes/list`, {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fa35b75d07mshec252f40e7f1108p1873a3jsne303f51b00de',
+                    'X-RapidAPI-Key': '415a4867edmsh0c7c38867940a83p184fcejsn73b56f074c1d',
                     'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                 }
             })
